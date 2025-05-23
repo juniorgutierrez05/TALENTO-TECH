@@ -1,41 +1,230 @@
-body{
+/* Estilos generales */
+body {
+    font-family: cursive;
     margin: 0;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    min-height: 100vh;
+    padding: 0;
+    background-color: #fffefe;
+
 }
+
 header {
-    background-color: rgb(165, 241, 102);
-    width: auto;
-    height: 50px;
-    grid-row-start: 1;
+    background-color: #000000;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
     text-align: center;
-    padding: 30px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px #888 solid;
+    
 }
-header, h1 {
-    justify-items: center;
+
+header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    
+    
 }
-main {
-    grid-row-start: 2;
-    margin: 20px;
+
+header .cart {
+    cursor: pointer;
+    position: relative;
+    margin-right: 20px;
 }
-footer{
-    justify-content: end;
-    grid-row-start: 3;
-}
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px));
-}
-.card{
+
+header .cart span {
+    position: absolute;
+    top: -5px;
+    right: -5px;
     background-color: rgb(255, 255, 255);
-    box-shadow: 0px 5px 6px 2px rgb(165, 241, 102);
-    width: 250px;
-    height: auto;
-    border-radius: 20px;
+    color: rgb(0, 0, 0);
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 0.8em;
 }
-.card img {
-    width: 250px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+
+/* Estilos de los productos */
+.product-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-card .info {
+    padding: 15px;
+    text-align: center;
+}
+
+.product-card .info h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.product-card .info p {
+    color: #888;
+    margin: 5px 0;
+}
+
+.product-card .info .price {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+}
+
+.product-card .info button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 20px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    font-family: cursive;
+}
+
+.product-card .info button:hover {
+    background-color: #5863a1; 
+}
+
+/* Estilos del carrito */
+.cart-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 80%;
+    background-color: white;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+.cart-modal.active {
+    transform: translateX(0);
+}
+
+.cart-modal .cart-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.cart-modal h2 {
+    margin-top: 0;
+}
+
+.cart-modal ul {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.cart-modal ul li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cart-modal .total {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.cart-modal button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 20px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.cart-modal button:hover {
+    background-color: #0056b3;
+}
+
+.cart-modal .close {
+    background-color: #dc3545;
+    margin-top: 20px;
+    align-self: center;
+}
+
+.cart-modal .close:hover {
+    background-color: #c82333;
+}
+/* Estilos para la notificación */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 82%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+.notification.show {
+    display: block;
+    opacity: 1;
+}
+.image-logo {
+    justify-content: center;
+    display: flex;
+}
+.filtro {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+.filtro input {
+    padding: 7px;
+    width: 400px;
+    margin-right: 10px;
+    border-radius: 20px;
+    border: 1px #333 solid;
+    
+}
+.filtro button {
+    background-color: #333;
+    border-radius: 20px;
+    width: 100px;
+    color: #fff;
+    border: none
 }
