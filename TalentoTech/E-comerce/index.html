@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alta Pinta</title>
     <link rel="stylesheet" href="index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 <body>
     <header>
         <div class="logo">AltaPinta.com</div>
         <div class="cart" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+
     </header>
     <div class="image-logo">
         <img src="./Imagenes/logo.webp" alt="logo" width="300px">
@@ -33,10 +36,11 @@
             <div class="total">
                 <span>Total: $<span id="total-price">0.00</span></span>
             </div>
-            <button id="checkout-btn">Finalizar Compra</button>
+            <button id="checkout-btn" onclick="generateInvoice()">Finalizar Compra</button>
             <button class="close" onclick="toggleCart()">Cerrar</button>
         </div>
     </aside>
+ 
 
     <script src="index.js"></script>
     <!-- Notificación de producto agregado -->

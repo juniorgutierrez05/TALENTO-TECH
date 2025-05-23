@@ -92,3 +92,27 @@ function addToCart(productId) {
     updateCart();
     showNotification(`${product.name} agregado al carrito`);
 }
+
+function generateInvoice() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Información de la tienda
+    doc.setFontSize(18);
+    doc.text('Factura de Compra - AltaPinta.com', 10, 10);
+
+    // Detalles de los productos
+    let y = 20;
+    cart.forEach(item => {
+        doc.setFontSize(12);
+        doc.text(`${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`, 10, y);
+        y += 10;
+    });
+
+    // Total
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    doc.text(`Total: $${total.toFixed(2)}`, 10, y);
+
+    // Guardar el PDF
+    doc.save('factura.pdf');
+}
