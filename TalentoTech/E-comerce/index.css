@@ -6,6 +6,10 @@ body {
     background-color: #fffefe;
 
 }
+.contact{
+    color: #fff;
+    text-decoration: none;
+}
 
 header {
     background-color: #000000;
@@ -16,6 +20,8 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px #888 solid;
+    position: fixed;
+    width: 100%;
     
 }
 
@@ -227,4 +233,12 @@ header .cart span {
     width: 100px;
     color: #fff;
     border: none
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    
+    width: 100%;
 }
