@@ -14,10 +14,10 @@ const products = [
 let cart = [];
 
 // Función para renderizar los productos
-function renderProducts() {
+function renderProducts(filteredList = products) {
     const container = document.querySelector('.product-cards');
     container.innerHTML = '';
-    products.forEach(product => {
+    filteredList.forEach(product => {
         const card = document.createElement('div');
         card.classList.add('product-card');
         card.innerHTML = `
@@ -31,6 +31,7 @@ function renderProducts() {
         container.appendChild(card);
     });
 }
+
 
 // Función para agregar productos al carrito
 function addToCart(productId) {
@@ -116,3 +117,15 @@ function generateInvoice() {
     // Guardar el PDF
     doc.save('factura.pdf');
 }
+
+function searchProducts() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const filteredProducts = products.filter(product => 
+        product.name.toLowerCase().includes(query)
+    );
+    renderProducts(filteredProducts);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+});
